@@ -61,11 +61,11 @@ namespace boost { namespace program_options { namespace detail {
 
         typedef ::boost::program_options::command_line_style::style_t style_t;
 
-        typedef function1<std::pair<std::string, std::string>, 
-                          const std::string&> 
+        typedef function<std::pair<std::string, std::string>(
+                          const std::string&)>
             additional_parser;
 
-        typedef function1<std::vector<option>, std::vector<std::string>&>
+        typedef function<std::vector<option>(std::vector<std::string>&)>
             style_parser;
         
         /** Constructs a command line parser for (argc, argv) pair. Uses

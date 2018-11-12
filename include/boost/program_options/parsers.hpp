@@ -95,7 +95,7 @@ namespace boost { namespace program_options {
         'parsed_options' */
 
 
-    typedef function1<std::pair<std::string, std::string>, const std::string&> ext_parser;
+    typedef function<std::pair<std::string, std::string>(const std::string&)> ext_parser;
 
     /** Command line parser.
 
@@ -169,7 +169,7 @@ namespace boost { namespace program_options {
     parse_command_line(int argc, const charT* const argv[],
                        const options_description&,
                        int style = 0,
-                       function1<std::pair<std::string, std::string>,
+                       function<std::pair<std::string(std::string)>,
                                  const std::string&> ext
                        = ext_parser());
 
@@ -229,7 +229,7 @@ namespace boost { namespace program_options {
     */
     BOOST_PROGRAM_OPTIONS_DECL parsed_options
     parse_environment(const options_description&,
-                      const function1<std::string, std::string>& name_mapper);
+                      const function<std::string(std::string)>& name_mapper);
 
     /** Parse environment.
 
@@ -243,7 +243,7 @@ namespace boost { namespace program_options {
     /** @overload
         This function exists to resolve ambiguity between the two above
         functions when second argument is of 'char*' type. There's implicit
-        conversion to both function1 and string.
+        conversion to both function and string.
     */
     BOOST_PROGRAM_OPTIONS_DECL parsed_options
     parse_environment(const options_description&, const char* prefix);

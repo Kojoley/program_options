@@ -27,7 +27,7 @@ void get_env_options()
       ;
 
    po::variables_map vm;
-   store(po::parse_environment(config, boost::function1<std::string, std::string>(mapper)), vm);
+   store(po::parse_environment(config, boost::function<std::string(std::string)>(mapper)), vm);
    notify(vm);
 
    if (vm.count("path"))

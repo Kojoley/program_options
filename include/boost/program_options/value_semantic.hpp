@@ -254,7 +254,7 @@ namespace boost { namespace program_options {
 
         /** Specifies a function to be called when the final value
             is determined. */
-        typed_value* notifier(function1<void, const T&> f)
+        typed_value* notifier(function<void(const T&)> f)
         {
             m_notifier = f;
             return this;
@@ -370,7 +370,7 @@ namespace boost { namespace program_options {
         boost::any m_implicit_value;
         std::string m_implicit_value_as_text;
         bool m_composing, m_implicit, m_multitoken, m_zero_tokens, m_required;
-        boost::function1<void, const T&> m_notifier;
+        boost::function<void(const T&)> m_notifier;
     };
 
 
